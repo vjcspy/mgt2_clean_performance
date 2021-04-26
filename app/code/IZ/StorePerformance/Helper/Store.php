@@ -116,7 +116,7 @@ class Store extends \IZ\StorePerformance\Helper\Data
             $store->setData('is_active', $storeData['is_active'] ?? 1);
             $store->save();
             // Trigger event to insert some data to the sales_sequence_meta table (fix bug place order in checkout)
-            $this->eventManager->dispatch('store_add', ['store' => $store]);
+//            $this->eventManager->dispatch('store_add', ['store' => $store]);
         }
 
         return $store->getId();
