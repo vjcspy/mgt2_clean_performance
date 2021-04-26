@@ -42,10 +42,8 @@ class DummyProducts extends Command
         $loop = (int)$input->getOption(self::NUMBER_PRODUCT_OPTION);
         $times = $this->productHelper->dummyProduct($loop);
 
-        $output->writeln("This process used " . '<info>' . (int)($this->productHelper->rutime($times[1], $times[0], "utime") / $loop) . '</info>' .
-            " ms for its computations");
-        $output->writeln("It spent " . '<info>' . (int)($this->productHelper->rutime($times[1], $times[0], "stime") / $loop) . '</info>' .
-            " ms in system calls\n");
+        $output->writeln("This process used " . '<info>' . (int)($this->productHelper->runTime($times[0], $times[1]) / $loop) . '</info>' .
+            " seconds for its computations per entity");
     }
 
     /**

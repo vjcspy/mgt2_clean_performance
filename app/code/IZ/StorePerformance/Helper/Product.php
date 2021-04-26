@@ -34,10 +34,10 @@ class Product extends \IZ\StorePerformance\Helper\Data
     protected function _beforeDummyProduct()
     {
         if (is_null($this->_website)) {
-            try{
+            try {
                 $this->state->setAreaCode(\Magento\Framework\App\Area::AREA_ADMINHTML);
-            }catch (\Exception $e){
-                
+            } catch (\Exception $e) {
+
             }
             $this->_website = $this->websiteFactory->create();
             $this->_website->load('base');
@@ -51,7 +51,7 @@ class Product extends \IZ\StorePerformance\Helper\Data
     public function dummyProduct($num = 1)
     {
         $this->_beforeDummyProduct();
-        $rustart = getrusage();
+        $rustart = microtime(true);
 
         for ($i = 0; $i < $num; $i++) {
             $code = $this->generateRandomString(10);
@@ -78,7 +78,7 @@ class Product extends \IZ\StorePerformance\Helper\Data
             $product->save();
         }
 
-        $ru = getrusage();
+        $ru = microtime(true);
 
         return [$rustart, $ru];
     }

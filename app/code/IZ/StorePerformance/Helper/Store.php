@@ -62,6 +62,7 @@ class Store extends \IZ\StorePerformance\Helper\Data
 
     public function dummyStore($numberOfStore = 1)
     {
+        $rustart = microtime(true);
         $updateFirst = false;
         /** @var \Magento\Store\Model\Website $website */
         $website = $this->websiteFactory->create();
@@ -84,19 +85,18 @@ class Store extends \IZ\StorePerformance\Helper\Data
 
         for ($i = 0; $i < $numberOfStore; $i++) {
             $code = 's' . $this->generateRandomString(8);
-            try {
-                $newStoreId = $this->creteStore($website, $group, [
-                    'code' => $code,
-                    'name' => $code
-                ]);
-                if (!$updateFirst) {
-                    $group->setDefaultStoreId($newStoreId)->save();
-                    $updateFirst = true;
-                }
-            } catch (\Exception $e) {
-                $a = 1;
+            $newStoreId = $this->creteStore($website, $group, [
+                'code' => $code,
+                'name' => $code
+            ]);
+            if (!$updateFirst) {
+                $group->setDefaultStoreId($newStoreId)->save();
+                $updateFirst = true;
             }
         }
+        $ru = microtime(true);
+
+        return [$rustart, $ru];
 
     }
 
