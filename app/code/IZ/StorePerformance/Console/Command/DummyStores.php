@@ -42,7 +42,7 @@ class DummyStores extends Command
         $loop = (int)$input->getOption(self::NUMBER_STORE_OPTION);
         $times = $this->storeHelper->dummyStore($loop);
 
-        $output->writeln("This process used " . '<info>' . (int)($this->storeHelper->runTime($times[0], $times[1]) / $loop) . '</info>' .
+        $output->writeln("This process used " . '<info>' . (int)($this->storeHelper->runTime($times[0], $times[1])) . '</info>' .
             " seconds for its computations per entity");
     }
 

@@ -67,14 +67,7 @@ class Product extends \IZ\StorePerformance\Helper\Data
             $product->setPrice(1); // price of product
             $product->setWebsiteIds([$this->_website->getId(),
             ]);
-            $product->setStockData(
-                array(
-                    'use_config_manage_stock' => 0,
-                    'manage_stock' => 0,
-                    'is_in_stock' => 1,
-                    'qty' => 0
-                )
-            );
+            $product->setStockData(null);
             $product->save();
         }
 
